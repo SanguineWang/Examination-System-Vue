@@ -1,24 +1,21 @@
 # examination_system_vue
 
-## Project setup
-```
-npm install
-```
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## 2020-07-14
+Project setup 
 
-### Compiles and minifies for production
-```
-npm run build
-```
+`
+vue ui
+`
 
-### Lints and fixes files
-```
-npm run lint
-```
+Import Vuetify 
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+`
+npm i vuetify
+`
+
+Import Axios 
+
+`
+npm i axios
+`
