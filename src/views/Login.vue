@@ -28,7 +28,7 @@
         target="_blank"
         text
       >
-        <span class="mr-2"> our Github</span>
+        <span class="mr-2">our Github</span>
         <v-icon>mdi-open-in-new</v-icon>
       </v-btn>
     </v-app-bar>
@@ -48,6 +48,7 @@
                       <v-text-field
                         label="*ID"
                         required
+                        :rules="notNullRules"
                         v-model="user.number"
                       ></v-text-field>
                     </v-col>
@@ -55,6 +56,7 @@
                       <v-text-field
                         label="*Password"
                         type="password"
+                        :rules="notNullRules"
                         required
                         v-model="user.password"
                       ></v-text-field>
@@ -78,10 +80,17 @@
 </template>
 
 <script>
+import axios from "@/axios/myAxios.js";
+import * as types from "@/store/type.js";
+import { updateRouters } from "../router";
 export default {
   name: "Login",
   data() {
     return {
+      notNullRules: [
+        v => /^[0-9]*$/.test(v) || "必须是数字",
+        v => v != "" || "不能为空"
+      ],
       user: {
         number: "",
         password: ""
@@ -94,12 +103,40 @@ export default {
   methods: {
     login() {
       console.log("click login");
+      console.log(this.user);
       //登录之后刷新，让路由守卫拦截到
-      //   this.$store.dispatch(USER_LOGIN, this.user).then(() => {
-      //     this.isShow = false;
-      //     this.$router.go(0);
-      //   });
-      this.$router.push("/teacher");
+      this.userLogin(this.user).then(() => {
+        updateRouters();
+        let role = sessionStorage.getItem(types.role);
+        console.log(role);
+        if (role == types.teacherRole) {
+          this.$router.push("/teacher");
+        }
+      });
+    },
+    //登录
+    async userLogin(user) {
+      let resp = await axios.post("login", user);
+      if (resp != null) {
+        //  置于本地session仓库
+        let token = resp.headers["authorization"];
+        let role = resp.data.data.role;
+        sessionStorage.setItem(types.author, token);
+        sessionStorage.setItem(types.role, role);
+        // console.log(token);
+        // console.log(role);
+      } else {
+        console.log("响应为空");
+      }
+    },
+    // 登录使用token测试
+    async userLoginTest() {
+      let resp = await axios.get("loginTest");
+      if (resp != null) {
+        console.log(resp.data.data.uid);
+      } else {
+        console.log("响应为空");
+      }
     }
   }
 };
