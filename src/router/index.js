@@ -16,7 +16,8 @@ let teacherRouters = [
   {
     path: "/teacher",
     name: "TeacherHome",
-    component: () => import("../views/Teacher/TeacherIndex.vue")
+    component: () => import("../views/Teacher/TeacherIndex.vue"),
+    children: []
   }
 ];
 let studentRouters = [];

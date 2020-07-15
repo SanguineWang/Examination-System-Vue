@@ -91,11 +91,11 @@
       </v-btn>
     </v-app-bar>
     <v-main>
-      <v-container class="fill-height" fluid>
-        <v-row align="center" justify="center">
+      <v-container fluid class="mx-auto">
+        <v-row align="center" class="mx-auto" justify="center">
           <v-toolbar-title
-            ><h1>Course</h1>
-            <h6>课程管理，用于录入成绩</h6>
+            ><h1>Exam</h1>
+            <h6>考试管理，用于录入成绩</h6>
           </v-toolbar-title>
           <v-spacer></v-spacer>
           <v-btn class="mx-2" color="secondary" @click="openAddDialog">
@@ -104,29 +104,43 @@
         </v-row>
         <v-divider></v-divider>
         <v-row>
-          <v-col v-for="(c, index) in exams" :key="index">
-            <v-card class="ma-auto" width="300">
-              <v-card-text>
-                <p class="display-1 text--primary">
-                  {{ c.name }}
-                </p>
+          <v-col>
+            <v-simple-table>
+              <template v-slot:default>
+                <thead>
+                  <tr>
+                    <th class="text-left">count</th>
+                    <th class="text-left">名称</th>
+                    <th class="text-left">开始时间</th>
+                    <th class="text-left">结束时间</th>
+                    <th class="text-left">操作</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="(item, index) in exams" :key="`exam-${item.id}`">
+                    <td>{{ index + 1 }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.startTime }}</td>
+                    <td>{{ item.endTime }}</td>
+                    <td>
+                      <v-btn @click="check(item.id)" color="secondary">
+                        Check Auth</v-btn
+                      >
+                    </td>
 
-                <p>课程</p>
-                <div class="text--primary">
-                  所占权重<br />
-                  {{ c.weight }}
-                </div>
-              </v-card-text>
-              <v-card-actions>
-                <v-btn icon color="secondary" @click="deleteCourse(c.id)">
-                  <v-icon>close</v-icon>
-                </v-btn>
-                <v-spacer></v-spacer>
-                <v-btn text color="secondary accent-4" @click="router(c.id)">
-                  More <v-icon right dark>mdi-arrow-right</v-icon>
-                </v-btn>
-              </v-card-actions>
-            </v-card>
+                    <td>
+                      <v-btn
+                        @click="pick(item.id)"
+                        color="secondary"
+                        :disabled="!canPick"
+                      >
+                        pick</v-btn
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </template>
+            </v-simple-table>
           </v-col>
         </v-row>
       </v-container>
@@ -145,7 +159,7 @@
     <v-dialog v-model="dialog" width="800px">
       <v-card>
         <v-card-title class="grey darken-2">
-          Create contact
+          Create Exam
         </v-card-title>
         <v-container>
           <v-row class="mx-2">
@@ -160,15 +174,7 @@
                 <v-text-field placeholder="Name"></v-text-field>
               </v-row>
             </v-col>
-            <v-col cols="6">
-              <v-text-field
-                prepend-icon="mdi-account-card-details-outline"
-                placeholder="Company"
-              ></v-text-field>
-            </v-col>
-            <v-col cols="6">
-              <v-text-field placeholder="Job title"></v-text-field>
-            </v-col>
+
             <v-col cols="12">
               <v-text-field
                 prepend-icon="mdi-mail"
@@ -212,6 +218,7 @@ export default {
     drawer: null,
     exams: [],
     newEaxm: {},
+    myInfo: {},
     items: [
       { icon: "mdi-contacts", text: "Contacts" },
       { icon: "mdi-history", text: "Frequently contacted" },
@@ -236,36 +243,45 @@ export default {
           { text: "Other contacts" }
         ]
       },
-      { icon: "mdi-cog", text: "Settings" },
-      { icon: "mdi-message", text: "Send feedback" },
-      { icon: "mdi-help-circle", text: "Help" },
-      { icon: "mdi-cellphone-link", text: "App downloads" },
-      { icon: "mdi-keyboard", text: "Go to the old version" }
+      { icon: "mdi-cog", text: "Settings" }
     ]
   }),
   components: {},
-  created() {},
+  created() {
+    this.getExamList();
+    this.getMyInfo();
+  },
   mounted() {},
   methods: {
     router(cid) {
       this.$router.push(`/teacher/exam/${cid}`);
     },
 
-    // 课程集合获取
+    // 考试集合获取
     async getExamList() {
       let resp = await axios.get("teacher/exam");
-      this.exams = resp.data.exams;
+      this.exams = resp.data.data.examList;
     },
-    //添加课程
+    //添加考试
     async addExam(newEaxm) {
       let resp = await axios.post("teacher/exam", newEaxm);
-      this.exams = resp.data.exams;
+      this.exams = resp.data.data.examList;
       // this.openAddDialog();
     },
-    //删除课程
+    //删除考试
     async deleteExam(id) {
       let resp = await axios.delete(`teacher/exam/${id}`);
-      this.exams = resp.data.data.exams;
+      this.exams = resp.data.data.examList;
+    },
+    //获取个人信息
+    async getMyInfo() {
+      let resp = await axios.get("teacher/myInfo");
+      this.myInfo = resp.data.data.myInfo;
+    },
+    //更新个人信息
+    async updateMyInfo() {
+      let resp = await axios.patch("teacher/myInfo");
+      this.myInfo = resp.data.data.myInfo;
     }
   }
 };

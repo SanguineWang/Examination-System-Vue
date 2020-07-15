@@ -33,6 +33,13 @@
       </v-btn>
     </v-app-bar>
     <v-main>
+      <!-- <v-img
+        src="http://img5.imgtn.bdimg.com/it/u=1821811928,2965603807&fm=26&gp=0.jpg"
+        alt="background"
+        width="100%"
+        contain
+        position="absolute"
+      /> -->
       <v-container class="fill-height" fluid>
         <v-row align="center" justify="center">
           <v-col cols="12" sm="8" md="5">
@@ -41,6 +48,7 @@
                 <span class="headline">Enter your account</span>
                 <v-spacer></v-spacer>
               </v-card-title>
+              <!-- <v-divider></v-divider> -->
               <v-card-text>
                 <v-container>
                   <v-row>
@@ -103,8 +111,8 @@ export default {
   methods: {
     login() {
       console.log("click login");
-      console.log(this.user);
-      //登录之后刷新，让路由守卫拦截到
+      // console.log(this.user);
+
       this.userLogin(this.user).then(() => {
         updateRouters();
         let role = sessionStorage.getItem(types.role);
