@@ -39,7 +39,7 @@
         width="100%"
         contain
         position="absolute"
-      /> -->
+      />-->
       <v-container class="fill-height" fluid>
         <v-row align="center" justify="center">
           <v-col cols="12" sm="8" md="5">
@@ -119,6 +119,9 @@ export default {
         console.log(role);
         if (role == types.teacherRole) {
           this.$router.push("/teacher");
+        }
+        if (role == types.studentRole) {
+          this.$router.push("/student");
         }
       });
     },
