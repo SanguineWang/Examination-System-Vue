@@ -26,14 +26,14 @@
         </v-card>
       </v-col>
       <v-col cols="12" sm="6">
-        <v-card>
+        <!-- <v-card>
           <v-card-title>
             <v-icon large left>timer</v-icon>
             <h2>当前剩余时间</h2>
           </v-card-title>
           {{ calTime(this.$data.exam.endTime) }}
           <v-card-text></v-card-text>
-        </v-card>
+        </v-card> -->
       </v-col>
     </v-row>
     <h3>选择题</h3>
