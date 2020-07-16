@@ -2,6 +2,10 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Login from "../views/Login.vue";
 import * as tpyes from "../store/type";
+import Home from '../views/Admin/Home.vue'
+import Welcome from '../views/Admin/Welcome.vue'
+import StuList from '../views/Admin/StuList.vue'
+import TeachList from '../views/Admin/TeachList.vue'
 
 Vue.use(VueRouter);
 
@@ -49,7 +53,18 @@ let studentRouters = [
     ]
   }
 ];
-let adminRouters = [];
+let adminRouters = [
+  {
+    path: '/home',
+    component: Home,
+    redirect: '/welcome',
+    children: [
+      { path: '/welcome', component: Welcome },
+      { path: '/stuList', component: StuList },
+      { path: '/teachList', component: TeachList }
+    ]
+  }
+];
 const router = new VueRouter({
   routes
 });

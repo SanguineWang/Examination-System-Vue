@@ -23,11 +23,7 @@
 
       <v-spacer></v-spacer>
 
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
+      <v-btn href="https://github.com/vuetifyjs/vuetify/releases/latest" target="_blank" text>
         <span class="mr-2">our Github</span>
         <v-icon>mdi-open-in-new</v-icon>
       </v-btn>
@@ -71,9 +67,7 @@
                     </v-col>
                   </v-row>
                 </v-container>
-                <small
-                  >*Please confirm that you are using your own account</small
-                >
+                <small>*Please confirm that you are using your own account</small>
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
@@ -122,6 +116,9 @@ export default {
         }
         if (role == types.studentRole) {
           this.$router.push("/student");
+        }
+        if (role == types.adminRole) {
+          this.$router.push("/home");
         }
       });
     },
