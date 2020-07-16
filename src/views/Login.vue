@@ -23,7 +23,11 @@
 
       <v-spacer></v-spacer>
 
-      <v-btn href="https://github.com/vuetifyjs/vuetify/releases/latest" target="_blank" text>
+      <v-btn
+        href="https://github.com/vuetifyjs/vuetify/releases/latest"
+        target="_blank"
+        text
+      >
         <span class="mr-2">our Github</span>
         <v-icon>mdi-open-in-new</v-icon>
       </v-btn>
@@ -59,7 +63,7 @@
                     <v-col cols="12">
                       <v-text-field
                         label="*密码"
-                        type="密码"
+                        type="password"
                         :rules="notNullRules"
                         required
                         v-model="user.password"
@@ -67,11 +71,7 @@
                     </v-col>
                   </v-row>
                 </v-container>
-<<<<<<< HEAD
-                <small>*Please confirm that you are using your own account</small>
-=======
                 <small>*请确认您使用自己的帐户</small>
->>>>>>> 4a0eb52d257b6ba569fa28b4dd8505513ea5fb46
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
