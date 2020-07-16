@@ -38,11 +38,11 @@
               </v-list-item-title>
               <h3>
                 考试成绩：{{
-                  sumGrade(exam.objectiveGrade, exam.subjectiveGrade)
+                sumGrade(exam.objectiveGrade, exam.subjectiveGrade)
                 }}
               </h3>
-              <v-list-item-title v-text="exam.startTime"></v-list-item-title>
-              <v-list-item-title v-text="exam.endTime"></v-list-item-title>
+              <v-list-item-title v-text="formatDate(exam.startTime)"></v-list-item-title>
+              <v-list-item-title v-text="formatDate(exam.endTime)"></v-list-item-title>
               <v-list-item-title v-text="exam.teacherName"></v-list-item-title>
             </v-list-item-content>
           </v-list-item>
@@ -77,6 +77,9 @@ export default {
     ]
   }),
   methods: {
+    formatDate(date) {
+      return date.replace("T", " ");
+    },
     sumGrade(o, s) {
       return o + s;
     },

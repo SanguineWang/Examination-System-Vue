@@ -30,13 +30,11 @@ let studentRouters = [
         props: true,
         path: "/examList",
         component: () => import("../views/Student/examList.vue"),
-        children: [
-          {
-            props: true,
-            path: "/examInfo/:eid",
-            component: () => import("../views/Student/examInfo.vue")
-          }
-        ]
+
+      }, {
+        props: true,
+        path: "/examInfo/:eid",
+        component: () => import("../views/Student/examInfo.vue")
       },
       {
         path: "/studentInfo",

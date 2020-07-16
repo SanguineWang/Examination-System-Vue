@@ -19,14 +19,11 @@
           required
           v-model="data.myInfo.user.name"
         ></v-text-field>
-        <!-- <v-text-field
-            label="注册时间"
-            required
-            v-model="data.myInfo.user.insertTime"
-        ></v-text-field>-->
-        <v-text>
-          注册时间：<span v-text="data.myInfo.user.insertTime"></span
-        ></v-text>
+        <v-text-field
+          label="注册时间"
+          disabled=""
+          v-model="data.myInfo.user.insertTime"
+        ></v-text-field>
       </v-card-text>
       <v-card-actions>
         <v-btn depressed small color="primary" @click="updateInfo"
