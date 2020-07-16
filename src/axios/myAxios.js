@@ -1,5 +1,7 @@
 import axios from "axios";
+import store from "../store/index";
 import { author } from "../store/type";
+import { SHOW_EXCEPTION } from "../store/type";
 axios.defaults.baseURL = "/api/";
 
 axios.interceptors.request.use(
@@ -13,7 +15,7 @@ axios.interceptors.request.use(
   },
   function(error) {
     // 全局异常处理
-    // store.commit(SHOW_EXCEPTION, { message: error });
+    store.commit(SHOW_EXCEPTION, { message: error });
     return Promise.reject(error);
   }
 );
@@ -32,7 +34,7 @@ axios.interceptors.response.use(
           break;
       }
       // 此时为同步事件，统一将任意异常信息，置于store
-      // store.commit(SHOW_EXCEPTION, { message: resp.data.message });
+      store.commit(SHOW_EXCEPTION, { message: resp.data.message });
     }
     // 可以阻止调用方法继续执行。但控制台有异常信息
     return Promise.reject();
