@@ -40,7 +40,35 @@ let teacherRouters = [
     ]
   }
 ];
-let studentRouters = [];
+let studentRouters = [
+  {
+    path: "/student",
+    name: "StudentHome",
+    component: () => import("../views/Student/StudentIndex.vue"),
+    children: [
+      {
+        props: true,
+        path: "/examList",
+        component: () => import("../views/Student/examList.vue"),
+        children: [
+          {
+            props: true,
+            path: "/examInfo/:eid",
+            component: () => import("../views/Student/examInfo.vue")
+          }
+        ]
+      },
+      {
+        path: "/studentInfo",
+        component: () => import("../views/Student/studentInfo.vue")
+      },
+      {
+        path: "/gradeList",
+        component: () => import("../views/Student/gradeInfo.vue")
+      }
+    ]
+  }
+];
 let adminRouters = [];
 const router = new VueRouter({
   routes
