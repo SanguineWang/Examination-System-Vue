@@ -42,11 +42,15 @@
             <div class="text-center">
               <v-dialog v-model="dialog" width="500">
                 <template v-slot:activator="{ on, attrs }">
-                  <v-btn color="red lighten-2" dark v-bind="attrs" v-on="on">进入考试</v-btn>
+                  <v-btn color="red lighten-2" dark v-bind="attrs" v-on="on"
+                    >进入考试
+                  </v-btn>
                 </template>
 
                 <v-card>
-                  <v-card-title class="headline grey lighten-2" primary-title>考前须知</v-card-title>
+                  <v-card-title class="headline grey lighten-2" primary-title
+                    >考前须知
+                  </v-card-title>
 
                   <v-card-text>请确保网络环境的问题</v-card-text>
 
@@ -54,7 +58,9 @@
 
                   <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="primary" text @click="intoExam(exam.id)">同意上述须知</v-btn>
+                    <v-btn color="primary" text @click="intoExam(exam.id)"
+                      >同意上述须知</v-btn
+                    >
                   </v-card-actions>
                 </v-card>
               </v-dialog>
@@ -99,10 +105,26 @@
             </v-card-title>
             <v-card-text>
               <v-radio-group v-model="choice.answer">
-                <v-radio :key="1" :label="`${choice.option_A}`" :value="1"></v-radio>
-                <v-radio :key="2" :label="`${choice.option_B}`" :value="2"></v-radio>
-                <v-radio :key="3" :label="`${choice.option_C}`" :value="3"></v-radio>
-                <v-radio :key="4" :label="`${choice.option_D}`" :value="4"></v-radio>
+                <v-radio
+                  :key="1"
+                  :label="`${choice.option_A}`"
+                  :value="1"
+                ></v-radio>
+                <v-radio
+                  :key="2"
+                  :label="`${choice.option_B}`"
+                  :value="2"
+                ></v-radio>
+                <v-radio
+                  :key="3"
+                  :label="`${choice.option_C}`"
+                  :value="3"
+                ></v-radio>
+                <v-radio
+                  :key="4"
+                  :label="`${choice.option_D}`"
+                  :value="4"
+                ></v-radio>
               </v-radio-group>
             </v-card-text>
           </v-card>
@@ -134,7 +156,11 @@
               <p v-text="subject.title"></p>
             </v-card-title>
             <v-card-actions>
-              <v-textarea outlined label="你的回答" :value="subject.answer"></v-textarea>
+              <v-textarea
+                outlined
+                label="你的回答"
+                :value="subject.answer"
+              ></v-textarea>
             </v-card-actions>
           </v-card>
         </v-list-item>
@@ -144,11 +170,15 @@
           <v-dialog v-model="dialog" width="500">
             <template v-slot:activator="{ on, attrs }">
               <!-- <v-btn color="red lighten-2" dark >Click Me</v-btn> -->
-              <v-btn block color="secondary" primary v-bind="attrs" v-on="on">提交试卷</v-btn>
+              <v-btn block color="secondary" primary v-bind="attrs" v-on="on"
+                >提交试卷</v-btn
+              >
             </template>
 
             <v-card>
-              <v-card-title class="headline grey lighten-2" primary-title>提交确认</v-card-title>
+              <v-card-title class="headline grey lighten-2" primary-title
+                >提交确认</v-card-title
+              >
 
               <v-card-text>请仔细检查试卷，提交后无法进行更改</v-card-text>
 
@@ -156,7 +186,9 @@
 
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="primary" text @click="uploadExam(data.exam.id)">确认提交</v-btn>
+                <v-btn color="primary" text @click="uploadExam(data.exam.id)"
+                  >确认提交</v-btn
+                >
               </v-card-actions>
             </v-card>
           </v-dialog>
