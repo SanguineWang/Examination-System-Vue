@@ -10,12 +10,17 @@
   "dependencies": {
     "axios": "^0.19.2",
     "core-js": "^3.6.5",
+<<<<<<< HEAD
     "element-ui": "^2.13.2",
     "express": "^4.17.1",
+=======
+    "module": "^1.2.5",
+>>>>>>> 4a0eb52d257b6ba569fa28b4dd8505513ea5fb46
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
     "vuetify": "^2.3.4",
-    "vuex": "^3.4.0"
+    "vuex": "^3.4.0",
+    "xlsx": "^0.16.3"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.4.0",

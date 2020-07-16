@@ -1,5 +1,4 @@
 import axios from "axios";
-import store from "../store/index";
 import { author } from "../store/type";
 axios.defaults.baseURL = "/api/";
 

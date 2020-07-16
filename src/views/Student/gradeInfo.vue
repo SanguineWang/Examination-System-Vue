@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>成绩列表展示</h1>
-    <v-card class="mx-auto text-center" color="green" dark max-width="600">
+    <v-card class="mx-auto text-center" max-width="600">
       <v-card-text>
         <v-sheet color="rgba(0, 0, 0, .12)">
           <v-sparkline
@@ -41,8 +41,12 @@
                   sumGrade(exam.objectiveGrade, exam.subjectiveGrade)
                 }}
               </h3>
-              <v-list-item-title v-text="exam.startTime"></v-list-item-title>
-              <v-list-item-title v-text="exam.endTime"></v-list-item-title>
+              <v-list-item-title
+                v-text="formatDate(exam.startTime)"
+              ></v-list-item-title>
+              <v-list-item-title
+                v-text="formatDate(exam.endTime)"
+              ></v-list-item-title>
               <v-list-item-title v-text="exam.teacherName"></v-list-item-title>
             </v-list-item-content>
           </v-list-item>
@@ -59,7 +63,7 @@ export default {
     this.getGradeNetWork();
   },
   data: () => ({
-    value: [],
+    value: [0],
 
     examList: [
       {
@@ -77,6 +81,9 @@ export default {
     ]
   }),
   methods: {
+    formatDate(date) {
+      return date.replace("T", " ");
+    },
     sumGrade(o, s) {
       return o + s;
     },

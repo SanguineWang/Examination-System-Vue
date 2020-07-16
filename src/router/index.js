@@ -2,10 +2,14 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Login from "../views/Login.vue";
 import * as tpyes from "../store/type";
+<<<<<<< HEAD
 import Home from '../views/Admin/Home.vue'
 import Welcome from '../views/Admin/Welcome.vue'
 import StuList from '../views/Admin/StuList.vue'
 import TeachList from '../views/Admin/TeachList.vue'
+=======
+import { rules } from "eslint-plugin-prettier";
+>>>>>>> 4a0eb52d257b6ba569fa28b4dd8505513ea5fb46
 
 Vue.use(VueRouter);
 
@@ -19,9 +23,28 @@ const routes = [
 let teacherRouters = [
   {
     path: "/teacher",
-    name: "TeacherHome",
     component: () => import("../views/Teacher/TeacherIndex.vue"),
-    children: []
+    children: [
+      {
+        path: "exam",
+        component: () => import("../views/Teacher/Exam/ExamList.vue")
+      },
+      {
+        path: "exam/:eid",
+        props: true,
+        component: () => import("../views/Teacher/Exam/ExamDetail.vue")
+      },
+      {
+        path: "myInfo",
+        name: "myInfo",
+        component: () => import("../views/Teacher/TeacherInfo.vue")
+      },
+      {
+        path: "setting",
+        name: "setting",
+        component: () => import("../views/Teacher/TeacherSetting.vue")
+      }
+    ]
   }
 ];
 let studentRouters = [
@@ -34,13 +57,11 @@ let studentRouters = [
         props: true,
         path: "/examList",
         component: () => import("../views/Student/examList.vue"),
-        children: [
-          {
-            props: true,
-            path: "/examInfo/:eid",
-            component: () => import("../views/Student/examInfo.vue")
-          }
-        ]
+
+      }, {
+        props: true,
+        path: "/examInfo/:eid",
+        component: () => import("../views/Student/examInfo.vue")
       },
       {
         path: "/studentInfo",
@@ -68,11 +89,17 @@ let adminRouters = [
 const router = new VueRouter({
   routes
 });
+// 重复点击页面报错解决
+const originalPush = VueRouter.prototype.push;
+VueRouter.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err);
+};
 
 export default router;
 // 更新路由
 export function updateRouters() {
-  switch (sessionStorage.getItem(tpyes.role)) {
+  let role = sessionStorage.getItem(tpyes.role);
+  switch (role) {
     case tpyes.teacherRole:
       router.addRoutes(teacherRouters);
       break;

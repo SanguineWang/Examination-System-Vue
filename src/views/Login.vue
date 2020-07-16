@@ -41,7 +41,7 @@
           <v-col cols="12" sm="8" md="5">
             <v-card>
               <v-card-title>
-                <span class="headline">Enter your account</span>
+                <span class="headline">输入您的账户</span>
                 <v-spacer></v-spacer>
               </v-card-title>
               <!-- <v-divider></v-divider> -->
@@ -50,7 +50,7 @@
                   <v-row>
                     <v-col cols="12">
                       <v-text-field
-                        label="*ID"
+                        label="*账号"
                         required
                         :rules="notNullRules"
                         v-model="user.number"
@@ -58,8 +58,8 @@
                     </v-col>
                     <v-col cols="12">
                       <v-text-field
-                        label="*Password"
-                        type="password"
+                        label="*密码"
+                        type="密码"
                         :rules="notNullRules"
                         required
                         v-model="user.password"
@@ -67,11 +67,15 @@
                     </v-col>
                   </v-row>
                 </v-container>
+<<<<<<< HEAD
                 <small>*Please confirm that you are using your own account</small>
+=======
+                <small>*请确认您使用自己的帐户</small>
+>>>>>>> 4a0eb52d257b6ba569fa28b4dd8505513ea5fb46
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="black darken-1" text @click="login">Login</v-btn>
+                <v-btn color="black darken-1" text @click="login">登入</v-btn>
               </v-card-actions>
             </v-card>
           </v-col>
@@ -112,7 +116,7 @@ export default {
         let role = sessionStorage.getItem(types.role);
         console.log(role);
         if (role == types.teacherRole) {
-          this.$router.push("/teacher");
+          this.$router.push("/teacher/exam");
         }
         if (role == types.studentRole) {
           this.$router.push("/student");
