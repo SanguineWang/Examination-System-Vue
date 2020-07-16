@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Login from "../views/Login.vue";
 import * as tpyes from "../store/type";
+import { rules } from "eslint-plugin-prettier";
 
 Vue.use(VueRouter);
 
@@ -15,9 +16,28 @@ const routes = [
 let teacherRouters = [
   {
     path: "/teacher",
-    name: "TeacherHome",
     component: () => import("../views/Teacher/TeacherIndex.vue"),
-    children: []
+    children: [
+      {
+        path: "exam",
+        component: () => import("../views/Teacher/Exam/ExamList.vue")
+      },
+      {
+        path: "exam/:eid",
+        props: true,
+        component: () => import("../views/Teacher/Exam/ExamDetail.vue")
+      },
+      {
+        path: "myInfo",
+        name: "myInfo",
+        component: () => import("../views/Teacher/TeacherInfo.vue")
+      },
+      {
+        path: "setting",
+        name: "setting",
+        component: () => import("../views/Teacher/TeacherSetting.vue")
+      }
+    ]
   }
 ];
 let studentRouters = [];
@@ -25,11 +45,17 @@ let adminRouters = [];
 const router = new VueRouter({
   routes
 });
+// 重复点击页面报错解决
+const originalPush = VueRouter.prototype.push;
+VueRouter.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err);
+};
 
 export default router;
 // 更新路由
 export function updateRouters() {
-  switch (sessionStorage.getItem(tpyes.role)) {
+  let role = sessionStorage.getItem(tpyes.role);
+  switch (role) {
     case tpyes.teacherRole:
       router.addRoutes(teacherRouters);
       break;

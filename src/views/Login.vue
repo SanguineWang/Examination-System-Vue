@@ -118,7 +118,7 @@ export default {
         let role = sessionStorage.getItem(types.role);
         console.log(role);
         if (role == types.teacherRole) {
-          this.$router.push("/teacher");
+          this.$router.push("/teacher/exam");
         }
       });
     },
