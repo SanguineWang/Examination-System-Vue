@@ -67,11 +67,7 @@
                     </v-col>
                   </v-row>
                 </v-container>
-<<<<<<< HEAD
-                <small>*Please confirm that you are using your own account</small>
-=======
                 <small>*请确认您使用自己的帐户</small>
->>>>>>> 4a0eb52d257b6ba569fa28b4dd8505513ea5fb46
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>

@@ -2,14 +2,11 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Login from "../views/Login.vue";
 import * as tpyes from "../store/type";
-<<<<<<< HEAD
 import Home from '../views/Admin/Home.vue'
 import Welcome from '../views/Admin/Welcome.vue'
 import StuList from '../views/Admin/StuList.vue'
 import TeachList from '../views/Admin/TeachList.vue'
-=======
-import { rules } from "eslint-plugin-prettier";
->>>>>>> 4a0eb52d257b6ba569fa28b4dd8505513ea5fb46
+
 
 Vue.use(VueRouter);
 
