@@ -8,21 +8,23 @@
       </v-card-title>
       <v-card-text class="headline font-weight-bold">
         <v-text-field
-          label="学号"
+          label="账号"
           :rules="rules"
           hide-details="auto"
-          required
+          disabled=""
           v-model="data.myInfo.user.number"
+        ></v-text-field>
+        <v-text-field
+          label="角色"
+          :rules="rules"
+          hide-details="auto"
+          disabled=""
+          v-model="data.myInfo.user.role"
         ></v-text-field>
         <v-text-field
           label="姓名"
           required
           v-model="data.myInfo.user.name"
-        ></v-text-field>
-        <v-text-field
-          label="注册时间"
-          disabled=""
-          v-model="data.myInfo.user.insertTime"
         ></v-text-field>
       </v-card-text>
       <v-card-actions>
@@ -57,6 +59,9 @@ export default {
     ]
   }),
   methods: {
+    formatDate(date) {
+      return date.replace("T", " ");
+    },
     // 获取用户信息
     async getStudentInfo() {
       let resp = await axios.get("/students/myInfo");

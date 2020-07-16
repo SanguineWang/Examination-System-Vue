@@ -12,12 +12,13 @@
         <span class="hidden-sm-and-down">在线考试系统-学生端</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn icon>
+      <!-- <v-btn icon>
         <v-icon>mdi-apps</v-icon>
       </v-btn>
       <v-btn icon>
         <v-icon>mdi-bell</v-icon>
-      </v-btn>
+      </v-btn> -->
+      <v-btn class="ma-2" outlined @click="logOutAndClearStorage">登出</v-btn>
       <v-btn icon large>
         <v-avatar size="32px" item>
           <v-img
@@ -49,6 +50,12 @@ export default {
   },
   components: {
     sidebar
+  },
+  methods: {
+    logOutAndClearStorage() {
+      sessionStorage.clear();
+      this.$router.push("/");
+    }
   }
 };
 </script>

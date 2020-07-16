@@ -1,28 +1,41 @@
 <template>
   <div>
     <h1>考试</h1>
-    <v-card class="mx-auto" color="#26c6da" dark max-width="600">
-      <v-card-title>
-        <v-icon large left>mdi-twitter</v-icon>
-        <span class="title font-weight-light">考试信息</span>
-      </v-card-title>
+    <v-row>
+      <v-col cols="12" sm="6">
+        <v-card class="mx-auto" color="#26c6da" dark max-width="600">
+          <v-card-title>
+            <v-icon large left>mdi-twitter</v-icon>
+            <span class="title font-weight-light">考试信息</span>
+          </v-card-title>
 
-      <v-card-text class="headline font-weight-bold">
-        <p>
-          考试名称：
-          {{ exam.name }}
-        </p>
-        <p>
-          考试开始时间：
-          <span v-text="this.$data.exam.startTime"></span>
-        </p>
-        <p>
-          考试结束时间：
-          <span v-text="this.$data.exam.endTime"></span>
-        </p>
-      </v-card-text>
-    </v-card>
-
+          <v-card-text class="headline font-weight-bold">
+            <p>
+              考试名称：
+              {{ exam.name }}
+            </p>
+            <p>
+              考试开始时间：
+              <span v-text="this.$data.exam.startTime"></span>
+            </p>
+            <p>
+              考试结束时间：
+              <span v-text="this.$data.exam.endTime"></span>
+            </p>
+          </v-card-text>
+        </v-card>
+      </v-col>
+      <v-col cols="12" sm="6">
+        <v-card>
+          <v-card-title>
+            <v-icon large left>timer</v-icon>
+            <h2>当前剩余时间</h2>
+          </v-card-title>
+          {{ calTime(this.$data.exam.endTime) }}
+          <v-card-text></v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
     <h3>选择题</h3>
     <v-list>
       <v-list-item v-for="(choice, i) in this.$data.exam.choiceList" :key="i">
@@ -182,6 +195,40 @@ export default {
     };
   },
   methods: {
+    calTime(time) {
+      // setInterval(() => {
+      // let d = new Date();
+      // console.log(this.time)
+      // console.log(this.time.substring(11, 13))
+      //   let h = (d.getHours().toString() - this.time.substring(11, 13) + 24) % 24;
+      //   let m = (d.getMinutes().toString() - this.time.substring(14, 16) + 60) % 60;
+      //   let s = (d.getSeconds().toString() - this.time.substring(17, 19) + 60) % 60;
+      //   console.log(h + "h" + m + "m" + s + "s");
+      //   return h + "h" + m + "m" + s + "s";
+      // }, 10000);
+      // let d = new Date();
+      // let h = (d.getHours().toString() - time.substring(11, 13) + 24) % 24;
+      // let m = (d.getMinutes().toString() - time.substring(14, 16) + 60) % 60;
+      // let s = (d.getSeconds().toString() - time.substring(17, 19) + 60) % 60;
+      // setInterval(this.$data.startTime);
+      // console.log("Time:");
+      // console.log(time);
+      // console.log(h);
+      // console.log(m);
+      // console.log(s);
+      // console.log(time.substring(0,4))
+      // console.log(time.substring(5,7))
+      // console.log(time.substring(8,10))
+      // console.log(time.substring(8,10))
+      // console.log(time.substring(11, 13)); //h
+      // console.log(time.substring(14, 16)); //m
+      // console.log(time.substring(17, 19)); //s
+      // return h + "h" + m + "m" + s + "s";
+      // 2020-07-15T16:00:07
+    },
+    formatDate(date) {
+      return date.replace("T", " ");
+    },
     //获取考卷
     async getExamDetail(eid) {
       let resp = await axios.get("students/exam/" + eid);

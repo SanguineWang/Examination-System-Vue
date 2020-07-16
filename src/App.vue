@@ -1,6 +1,6 @@
 <template>
   <!-- <v-app> -->
-  <router-view id="firsrRouter" />
+  <router-view id="firstRouter" />
   <!-- </v-app> -->
 </template>
 

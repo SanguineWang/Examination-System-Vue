@@ -6,43 +6,8 @@
       app
     >
       <v-list dense>
-        <template v-for="item in items">
-          <v-row v-if="item.heading" :key="item.heading" align="center">
-            <v-col cols="6">
-              <v-subheader v-if="item.heading">
-                {{ item.heading }}
-              </v-subheader>
-            </v-col>
-            <v-col cols="6" class="text-center">
-              <a href="#!" class="body-2 black--text">EDIT</a>
-            </v-col>
-          </v-row>
-          <v-list-group
-            v-else-if="item.children"
-            :key="item.text"
-            v-model="item.model"
-            :prepend-icon="item.model ? item.icon : item['icon-alt']"
-            append-icon=""
-          >
-            <template v-slot:activator>
-              <v-list-item-content>
-                <v-list-item-title>
-                  {{ item.text }}
-                </v-list-item-title>
-              </v-list-item-content>
-            </template>
-            <v-list-item v-for="(child, i) in item.children" :key="i" link>
-              <v-list-item-action v-if="child.icon">
-                <v-icon>{{ child.icon }}</v-icon>
-              </v-list-item-action>
-              <v-list-item-content>
-                <v-list-item-title>
-                  {{ child.text }}
-                </v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-          </v-list-group>
-          <v-list-item v-else :key="item.text" link>
+        <template v-for="item in navItems">
+          <v-list-item :key="item.text" link @click="routeToPath(item.path)">
             <v-list-item-action>
               <v-icon>{{ item.icon }}</v-icon>
             </v-list-item-action>
@@ -75,12 +40,7 @@
         class="hidden-sm-and-down"
       ></v-text-field>
       <v-spacer></v-spacer>
-      <v-btn icon>
-        <v-icon>mdi-apps</v-icon>
-      </v-btn>
-      <v-btn icon>
-        <v-icon>mdi-bell</v-icon>
-      </v-btn>
+      <v-btn class="ma-2" outlined @click="logOutAndClearStorage">LogOut</v-btn>
       <v-btn icon large>
         <v-avatar size="32px" item>
           <v-img
@@ -92,186 +52,44 @@
     </v-app-bar>
     <v-main>
       <v-container fluid class="mx-auto">
-        <v-row align="center" class="mx-auto" justify="center">
-          <v-toolbar-title
-            ><h1>Exam</h1>
-            <h6>考试管理，用于录入成绩</h6>
-          </v-toolbar-title>
-          <v-spacer></v-spacer>
-          <v-btn class="mx-2" color="secondary" @click="openAddDialog">
-            <v-icon>mdi-plus</v-icon>addCourse
-          </v-btn>
-        </v-row>
-        <v-divider></v-divider>
-        <v-row>
-          <v-col>
-            <v-simple-table>
-              <template v-slot:default>
-                <thead>
-                  <tr>
-                    <th class="text-left">count</th>
-                    <th class="text-left">名称</th>
-                    <th class="text-left">开始时间</th>
-                    <th class="text-left">结束时间</th>
-                    <th class="text-left">操作</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr v-for="(item, index) in exams" :key="`exam-${item.id}`">
-                    <td>{{ index + 1 }}</td>
-                    <td>{{ item.name }}</td>
-                    <td>{{ item.startTime }}</td>
-                    <td>{{ item.endTime }}</td>
-                    <td>
-                      <v-btn @click="check(item.id)" color="secondary">
-                        Check Auth</v-btn
-                      >
-                    </td>
-
-                    <td>
-                      <v-btn
-                        @click="pick(item.id)"
-                        color="secondary"
-                        :disabled="!canPick"
-                      >
-                        pick</v-btn
-                      >
-                    </td>
-                  </tr>
-                </tbody>
-              </template>
-            </v-simple-table>
-          </v-col>
-        </v-row>
+        <router-view />
       </v-container>
     </v-main>
-    <v-btn
-      bottom
-      color="primary"
-      dark
-      fab
-      fixed
-      right
-      @click="dialog = !dialog"
-    >
-      <v-icon>mdi-plus</v-icon>
-    </v-btn>
-    <v-dialog v-model="dialog" width="800px">
-      <v-card>
-        <v-card-title class="grey darken-2">
-          Create Exam
-        </v-card-title>
-        <v-container>
-          <v-row class="mx-2">
-            <v-col class="align-center justify-space-between" cols="12">
-              <v-row align="center" class="mr-0">
-                <v-avatar size="40px" class="mx-3">
-                  <img
-                    src="//ssl.gstatic.com/s2/oz/images/sge/grey_silhouette.png"
-                    alt=""
-                  />
-                </v-avatar>
-                <v-text-field placeholder="Name"></v-text-field>
-              </v-row>
-            </v-col>
-
-            <v-col cols="12">
-              <v-text-field
-                prepend-icon="mdi-mail"
-                placeholder="Email"
-              ></v-text-field>
-            </v-col>
-            <v-col cols="12">
-              <v-text-field
-                type="tel"
-                prepend-icon="mdi-phone"
-                placeholder="(000) 000 - 0000"
-              ></v-text-field>
-            </v-col>
-            <v-col cols="12">
-              <v-text-field
-                prepend-icon="mdi-text"
-                placeholder="Notes"
-              ></v-text-field>
-            </v-col>
-          </v-row>
-        </v-container>
-        <v-card-actions>
-          <v-btn text color="primary">More</v-btn>
-          <v-spacer></v-spacer>
-          <v-btn text color="primary" @click="dialog = false">Cancel</v-btn>
-          <v-btn text @click="dialog = false">Save</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
   </v-app>
 </template>
 
 <script>
 import axios from "@/axios/myAxios.js";
+import router from "../../router";
 export default {
-  props: {
-    source: String
-  },
   data: () => ({
-    dialog: false,
     drawer: null,
-    exams: [],
-    newEaxm: {},
+
     myInfo: {},
-    items: [
-      { icon: "mdi-contacts", text: "Contacts" },
-      { icon: "mdi-history", text: "Frequently contacted" },
-      { icon: "mdi-content-copy", text: "Duplicates" },
-      {
-        icon: "mdi-chevron-up",
-        "icon-alt": "mdi-chevron-down",
-        text: "Labels",
-        model: true,
-        children: [{ icon: "mdi-plus", text: "Create label" }]
-      },
-      {
-        icon: "mdi-chevron-up",
-        "icon-alt": "mdi-chevron-down",
-        text: "More",
-        model: false,
-        children: [
-          { text: "Import" },
-          { text: "Export" },
-          { text: "Print" },
-          { text: "Undo changes" },
-          { text: "Other contacts" }
-        ]
-      },
-      { icon: "mdi-cog", text: "Settings" }
+    navItems: [
+      { icon: "mdi-history", text: "考试管理", path: "/teacher/exam" },
+      { icon: "mdi-contacts", text: "个人信息管理", path: "/teacher/myInfo" },
+      { icon: "mdi-content-copy", text: "设置", path: "/teacher/setting" }
     ]
   }),
   components: {},
-  created() {
-    this.getExamList();
-    this.getMyInfo();
+  created() {},
+  computed: {
+    getStartTime() {
+      return this.startDate + "T" + this.startTime;
+    },
+    getEndTime() {
+      return this.endDate + "T" + this.endTime;
+    }
   },
   mounted() {},
   methods: {
-    router(cid) {
-      this.$router.push(`/teacher/exam/${cid}`);
+    routeToPath(path) {
+      this.$router.push(path);
     },
-
-    // 考试集合获取
-    async getExamList() {
-      let resp = await axios.get("teacher/exam");
-      this.exams = resp.data.data.examList;
-    },
-    //添加考试
-    async addExam(newEaxm) {
-      let resp = await axios.post("teacher/exam", newEaxm);
-      this.exams = resp.data.data.examList;
-      // this.openAddDialog();
-    },
-    //删除考试
-    async deleteExam(id) {
-      let resp = await axios.delete(`teacher/exam/${id}`);
-      this.exams = resp.data.data.examList;
+    logOutAndClearStorage() {
+      sessionStorage.clear();
+      this.$router.push("/");
     },
     //获取个人信息
     async getMyInfo() {

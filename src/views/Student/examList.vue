@@ -22,10 +22,6 @@
               <v-icon>mdi-contacts</v-icon>
             </v-list-item-icon>
             <v-list-item-content>
-              <v-list-item-title v-text="exam.name">
-                考试编号：
-                <p v-text="exam.id"></p>
-              </v-list-item-title>
               <h3>
                 <p>
                   考试名:
@@ -35,12 +31,12 @@
 
               <p>
                 开始时间:
-                <span v-text="exam.startTime"></span>
+                <span v-text="formatDate(exam.startTime)"></span>
               </p>
 
               <p>
                 结束时间:
-                <span v-text="exam.endTime"></span>
+                <span v-text="formatDate(exam.endTime)"></span>
               </p>
               <p>
                 授课教师:
@@ -57,8 +53,8 @@
 
                 <v-card>
                   <v-card-title class="headline grey lighten-2" primary-title
-                    >考前须知</v-card-title
-                  >
+                    >考前须知
+                  </v-card-title>
 
                   <v-card-text>请确保网络环境的问题</v-card-text>
 
@@ -76,6 +72,8 @@
           </v-list-item>
         </v-list>
       </v-card>
+
+      <!-- <router-view /> -->
     </div>
   </div>
 </template>
@@ -95,6 +93,9 @@ export default {
     }
   }),
   methods: {
+    formatDate(date) {
+      return date.replace("T", " ");
+    },
     // 获取考试列表
     async getExamList() {
       let resp = await axios.get("students/exam");
