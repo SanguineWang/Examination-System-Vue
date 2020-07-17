@@ -6,7 +6,10 @@ import Home from '../views/Admin/Home.vue'
 import Welcome from '../views/Admin/Welcome.vue'
 import StuList from '../views/Admin/StuList.vue'
 import TeachList from '../views/Admin/TeachList.vue'
+<<<<<<< HEAD
+=======
 import { rules } from "eslint-plugin-prettier";
+>>>>>>> 50cf420e84efec14173b5d64149293ab9e174709
 
 Vue.use(VueRouter);
 

@@ -5,7 +5,7 @@ import store from "./store";
 import vuetify from "./plugins/vuetify";
 import "./plugins/element";
 // 引入全局样式表
-import "./assets/css/global.css";
+// import './assets/css/global.css'
 // 导入字体图标
 import "./assets/fonts/iconfont.css";
 // 配置axios
