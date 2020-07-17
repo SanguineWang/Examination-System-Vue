@@ -132,7 +132,7 @@
 
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="primary" text @click="uploadExam(data.exam.id)"
+              <v-btn color="primary" text @click="uploadExam(exam.id,exam)"
                 >确认提交</v-btn
               >
             </v-card-actions>
@@ -195,37 +195,6 @@ export default {
     };
   },
   methods: {
-    calTime(time) {
-      // setInterval(() => {
-      // let d = new Date();
-      // console.log(this.time)
-      // console.log(this.time.substring(11, 13))
-      //   let h = (d.getHours().toString() - this.time.substring(11, 13) + 24) % 24;
-      //   let m = (d.getMinutes().toString() - this.time.substring(14, 16) + 60) % 60;
-      //   let s = (d.getSeconds().toString() - this.time.substring(17, 19) + 60) % 60;
-      //   console.log(h + "h" + m + "m" + s + "s");
-      //   return h + "h" + m + "m" + s + "s";
-      // }, 10000);
-      // let d = new Date();
-      // let h = (d.getHours().toString() - time.substring(11, 13) + 24) % 24;
-      // let m = (d.getMinutes().toString() - time.substring(14, 16) + 60) % 60;
-      // let s = (d.getSeconds().toString() - time.substring(17, 19) + 60) % 60;
-      // setInterval(this.$data.startTime);
-      // console.log("Time:");
-      // console.log(time);
-      // console.log(h);
-      // console.log(m);
-      // console.log(s);
-      // console.log(time.substring(0,4))
-      // console.log(time.substring(5,7))
-      // console.log(time.substring(8,10))
-      // console.log(time.substring(8,10))
-      // console.log(time.substring(11, 13)); //h
-      // console.log(time.substring(14, 16)); //m
-      // console.log(time.substring(17, 19)); //s
-      // return h + "h" + m + "m" + s + "s";
-      // 2020-07-15T16:00:07
-    },
     formatDate(date) {
       return date.replace("T", " ");
     },
@@ -244,7 +213,8 @@ export default {
         this.$data.exam.subjectiveList.forEach(element => {
           element.answer = "";
         });
-        console.log(this.data);
+        console.log("获取试卷");
+        console.log(this.$data);
       } else {
         console.log("响应为空");
       }
@@ -270,8 +240,10 @@ export default {
         this.dialog = false;
       });
     },
-    uploadExam(eid) {
-      this.uploadExamDetail(eid, this.$data.exam).then(() => {
+    uploadExam(eid,exam) {
+      console.log(eid)
+      console.log(exam)
+      this.uploadExamDetail(eid, exam).then(() => {
         this.noexaming = true;
       });
     }
