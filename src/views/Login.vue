@@ -24,7 +24,7 @@
       <v-spacer></v-spacer>
 
       <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
+        href="https://github.com/SanguineWang/Examination-System-Vue"
         target="_blank"
         text
       >
@@ -33,13 +33,6 @@
       </v-btn>
     </v-app-bar>
     <v-main>
-      <!-- <v-img
-        src="http://img5.imgtn.bdimg.com/it/u=1821811928,2965603807&fm=26&gp=0.jpg"
-        alt="background"
-        width="100%"
-        contain
-        position="absolute"
-      />-->
       <v-container class="fill-height" fluid>
         <v-row align="center" justify="center">
           <v-col cols="12" sm="8" md="5">
