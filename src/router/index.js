@@ -7,7 +7,6 @@ import Welcome from '../views/Admin/Welcome.vue'
 import StuList from '../views/Admin/StuList.vue'
 import TeachList from '../views/Admin/TeachList.vue'
 
-
 Vue.use(VueRouter);
 
 const routes = [
