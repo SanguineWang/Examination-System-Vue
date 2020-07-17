@@ -230,7 +230,7 @@ export default {
       } else {
         console.log("响应为空");
       }
-      this.$router.push("/student");
+      this.$router.push("/examList");
     },
     intoExam(eid) {
       console.log("into exam" + eid);

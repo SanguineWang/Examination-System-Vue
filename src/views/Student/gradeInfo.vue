@@ -66,18 +66,18 @@ export default {
     value: [0],
 
     examList: [
-      {
-        id: 1,
-        startTime: "2020-07-11T16:34:35",
-        endTime: "2020-07-11T19:34:31",
-        name: "考试1",
-        studentName: "Default_student",
-        objectiveGrade: 4,
-        subjectiveGrade: 4,
-        studentNumber: 2007,
-        teacherName: "Default_teacher",
-        teacherNumber: 3001
-      }
+      // {
+      //   id: null,
+      //   startTime: null,
+      //   endTime: null,
+      //   name: null,
+      //   studentName: null,
+      //   objectiveGrade: null,
+      //   subjectiveGrade: null,
+      //   studentNumber: null,
+      //   teacherName: null,
+      //   teacherNumber: null
+      // }
     ]
   }),
   methods: {
