@@ -10,6 +10,7 @@
           <v-text-field
             v-model="oldpw"
             :rules="oldpwRules"
+            type="password"
             label="旧密码"
             required
           ></v-text-field>
@@ -19,6 +20,7 @@
           <v-text-field
             v-model="newpw"
             :rules="newpwRules"
+            type="password"
             label="新密码"
             required
           ></v-text-field>
