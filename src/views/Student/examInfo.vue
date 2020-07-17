@@ -132,7 +132,7 @@
 
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="primary" text @click="uploadExam(exam.id,exam)"
+              <v-btn color="primary" text @click="uploadExam(exam.id, exam)"
                 >确认提交</v-btn
               >
             </v-card-actions>
@@ -240,9 +240,9 @@ export default {
         this.dialog = false;
       });
     },
-    uploadExam(eid,exam) {
-      console.log(eid)
-      console.log(exam)
+    uploadExam(eid, exam) {
+      console.log(eid);
+      console.log(exam);
       this.uploadExamDetail(eid, exam).then(() => {
         this.noexaming = true;
       });
