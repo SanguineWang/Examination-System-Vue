@@ -25,13 +25,17 @@
           :default-active="activePath"
         >
           <!-- 一级菜单 -->
-          <el-submenu :index="item.id + ''" v-for="item in menulist" :key="item.id">
+          <el-submenu
+            :index="item.id + ''"
+            v-for="item in menulist"
+            :key="item.id"
+          >
             <!-- 一级菜单的模板区域 -->
             <template slot="title">
               <!-- 图标 -->
               <i :class="item.icon"></i>
               <!-- 文本 -->
-              <span>{{item.authName}}</span>
+              <span>{{ item.authName }}</span>
             </template>
 
             <!-- 二级菜单 -->
@@ -45,7 +49,7 @@
                 <!-- 图标 -->
                 <i class="el-icon-menu"></i>
                 <!-- 文本 -->
-                <span>{{subItem.authName}}</span>
+                <span>{{ subItem.authName }}</span>
               </template>
             </el-menu-item>
           </el-submenu>
