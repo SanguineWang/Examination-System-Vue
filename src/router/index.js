@@ -2,14 +2,11 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Login from "../views/Login.vue";
 import * as tpyes from "../store/type";
-import Home from '../views/Admin/Home.vue'
-import Welcome from '../views/Admin/Welcome.vue'
-import StuList from '../views/Admin/StuList.vue'
-import TeachList from '../views/Admin/TeachList.vue'
-<<<<<<< HEAD
-=======
+import Home from "../views/Admin/Home.vue";
+import Welcome from "../views/Admin/Welcome.vue";
+import StuList from "../views/Admin/StuList.vue";
+import TeachList from "../views/Admin/TeachList.vue";
 import { rules } from "eslint-plugin-prettier";
->>>>>>> 50cf420e84efec14173b5d64149293ab9e174709
 
 Vue.use(VueRouter);
 
@@ -56,9 +53,9 @@ let studentRouters = [
       {
         props: true,
         path: "/examList",
-        component: () => import("../views/Student/examList.vue"),
-
-      }, {
+        component: () => import("../views/Student/examList.vue")
+      },
+      {
         props: true,
         path: "/examInfo/:eid",
         component: () => import("../views/Student/examInfo.vue")
@@ -76,13 +73,13 @@ let studentRouters = [
 ];
 let adminRouters = [
   {
-    path: '/home',
+    path: "/home",
     component: Home,
-    redirect: '/welcome',
+    redirect: "/welcome",
     children: [
-      { path: '/welcome', component: Welcome },
-      { path: '/stuList', component: StuList },
-      { path: '/teachList', component: TeachList }
+      { path: "/welcome", component: Welcome },
+      { path: "/stuList", component: StuList },
+      { path: "/teachList", component: TeachList }
     ]
   }
 ];
