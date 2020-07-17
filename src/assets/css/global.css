@@ -37,3 +37,6 @@ body,
 .ql-editor {
   min-height: 300px;
 }
+.el-message{
+  height:30px;
+}

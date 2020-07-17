@@ -48,8 +48,8 @@
                 <th class="text-left">学号</th>
                 <th class="text-left">学生名</th>
                 <th class="text-left">提交情况</th>
-                <th class="text-left">主观题</th>
                 <th class="text-left">客观题</th>
+                <th class="text-left">主观题</th>
                 <th class="text-left">答题卡</th>
               </tr>
             </thead>

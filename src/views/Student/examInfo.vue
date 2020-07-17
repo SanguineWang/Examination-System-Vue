@@ -59,12 +59,12 @@
               <v-radio
                 :key="3"
                 :label="`${choice.option_C}`"
-                :value="3"
+                :value="4"
               ></v-radio>
               <v-radio
                 :key="4"
                 :label="`${choice.option_D}`"
-                :value="4"
+                :value="8"
               ></v-radio>
             </v-radio-group>
           </v-card-text>
@@ -106,7 +106,8 @@
             <v-textarea
               outlined
               label="你的回答"
-              :value="subject.answer"
+              
+              v-model="subject.answer"
             ></v-textarea>
           </v-card-actions>
         </v-card>

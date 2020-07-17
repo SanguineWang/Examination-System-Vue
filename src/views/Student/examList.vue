@@ -44,9 +44,9 @@
               </p>
             </v-list-item-content>
             <div class="text-center">
-              <v-dialog v-model="dialog" width="500">
-                <template v-slot:activator="{ on, attrs }">
-                  <v-btn color="red lighten-2" dark v-bind="attrs" v-on="on"
+              <v-dialog v-model="dialog" width="500" v-if="!exam.isSubmit">
+                <template v-slot:activator="{ on, attrs }" >
+                  <v-btn color="red lighten-2" dark v-bind="attrs" v-on="on" 
                     >进入考试</v-btn
                   >
                 </template>
@@ -68,6 +68,7 @@
                   </v-card-actions>
                 </v-card>
               </v-dialog>
+              <div v-else>当前考试已提交</div>
             </div>
           </v-list-item>
         </v-list>
